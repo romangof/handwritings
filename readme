@@ -1,0 +1,23 @@
+1. Tenga la posibilidad de enviar un texto y se pueda visualizar el texto escrito en png o
+pdf. El usuario puede elegir el formato.
+
+2. El programa debe ofrecer TODAS las opciones de renderizado que ofrece el servicio.
+
+3. EL programa debe tener una base de datos primitiva (NO debe usar manejadores de
+base de datos) donde pueda consultar los textos renderizados en puño y letra.
+
+4. El programa debe permitir luego de obtener el texto en alguno de los formatos, la opción
+de mandar el texto por email a un destinatario con un remitente, un subject y un body
+del correo.
+
+
+
+
+
+Notas:
+
+https://handwriting.io/
+
+http://ruby-doc.org/core-2.2.0/Marshal.html
+
+"Marshal is not a good tool for persistence, the format depends on the Ruby version and there's no way to decode older Marshal formats in new Rubies." -StackOverflow
