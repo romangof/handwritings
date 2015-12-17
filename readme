@@ -12,6 +12,22 @@ del correo.
 
 
 
+WorkFlow
+
+1. Mostrar lista de Handwritings y elegir una
+2. Seleccionar tipo de renderizado que se desea (PDF o PNG)
+3. Introducir texto
+4. Ofrecer opciones de renderizado
+  *ancho y largo
+  *tamaño
+  *color
+  *espaciado entre lineas
+  *variacion de espaciado entre lineas
+  *variacion de espaciado entre letras
+  *random seed???
+5. Guardar en la Base de datos
+6. Permitir enviar la imagen por correo
+
 
 
 Notas:
@@ -21,3 +37,4 @@ https://handwriting.io/
 http://ruby-doc.org/core-2.2.0/Marshal.html
 
 "Marshal is not a good tool for persistence, the format depends on the Ruby version and there's no way to decode older Marshal formats in new Rubies." -StackOverflow
+
