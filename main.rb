@@ -4,9 +4,6 @@
 # render = select_render
 # text = set_text
 
-
-
-
 require_relative 'service.rb'
 require_relative 'handwriting.rb'
 
@@ -14,6 +11,7 @@ class Main
 
   @@path = File.expand_path(File.dirname(__FILE__))
   @@dbpath = @@path + '/db'
+  @@render = ['render']
 
   def self.create_db_dir
     unless File.directory?(@@dbpath)
@@ -39,7 +37,83 @@ class Main
       end
     end
     # ToDo: Fix bug when text is introduced
+    #       Add pagination
+
     list[opt]
+  end
+
+  def self.set_render
+    opt = 0
+
+    while (opt < 1 || opt > 2)
+      puts "Render mode: 1. PNG  2. PDF"
+      opt = gets.chomp.to_i
+      if (opt < 1 || opt > 2)
+        puts "Invalid number"
+      elsif opt == 1
+        @@render[1] = 'png'
+      elsif opt == 2
+        @@render[1] = 'pdf'
+      end
+    end
+  end
+
+  def self.set_params
+    params = {}
+
+    if @@render[1] == 'png'
+      unit = 'px'
+    elsif @@render[1] == 'pdf'
+      unit = 'in'
+    end
+
+    puts "Text: "
+    params["text"] = gets.chomp
+
+    puts
+    puts "From here you can press enter to skip and use default"
+    puts
+
+    puts "Width:"
+    w = gets.chomp  
+    if w.to_i > 1
+      params["width"] = w.to_i.to_s + unit
+    end
+
+    puts "Height:   (Can be set to auto)"
+    h = gets.chomp
+    if h == 'auto'
+      params["height"] = h
+    elsif h > 0
+      params["height"] = h.to_i.to_s + unit 
+    end
+
+    if @@render[1] == 'pdf'
+      unit = 'pt'
+    end
+    puts "Size:"
+    size = gets.chomp
+    if size.to_i > 1
+      params["handwriting_size"] = size.to_i.to_s + unit 
+    end
+
+    puts "Color"
+    params["handwriting_color"] = gets.chomp
+    
+    
+    if @@render[1] == 'pdf'
+      unit = 'pt'
+    end
+
+
+
+    puts "Line spacing"
+    params["line_spacing"] = gets.chomp
+    puts ""
+    params[""] = gets.chomp
+    puts ""
+    params[""] = gets.chomp
+    
   end
 
 
@@ -89,3 +163,5 @@ end
 # # Now to read from file and de-serialize it:
 # m = YAML.load(File.read('/path/to/file.extension'))
 # m = Marshal.load(File.read('/path/to/file.extension'))
+
+
